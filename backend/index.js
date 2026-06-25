@@ -14,7 +14,10 @@ app.use(express.json());
 
 // Routes
 import authRoutes from './routes/auth.js';
+import aiRoutes from './src/routes/aiRoutes.js'
+
 app.use('/api/auth', authRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Connect to DB and start server
 const PORT = process.env.PORT || 5000;
