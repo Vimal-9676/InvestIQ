@@ -1,15 +1,24 @@
+import { useState } from 'react';
 import Navbar from './landing/Navbar';
 import Hero from './landing/Hero';
 import Features from './landing/Features';
 import Footer from './landing/Footer';
+import AuthModal from './AuthModal';
 
-const LandingPage = ({ onGetStarted }) => {
+const LandingPage = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      <Navbar onGetStarted={onGetStarted} />
-      <Hero onGetStarted={onGetStarted} />
+      <Navbar onGetStarted={() => setIsAuthModalOpen(true)} />
+      <Hero onGetStarted={() => setIsAuthModalOpen(true)} />
       <Features />
       <Footer />
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </div>
   );
 };
