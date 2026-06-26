@@ -1,0 +1,1 @@
+import Navbar from '../Navbar'; import Footer from '../Footer'; export default function Terms() { return <div className='min-h-screen bg-slate-50'><Navbar/><div className='max-w-4xl mx-auto p-8 pt-24'><h1 className='text-3xl font-bold mb-4'>Terms & Conditions</h1><p>Mock Terms Content</p></div><Footer/></div>; }

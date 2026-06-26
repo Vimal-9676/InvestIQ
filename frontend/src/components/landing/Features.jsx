@@ -2,7 +2,7 @@ import { FileText, BarChart2, Scale } from 'lucide-react';
 
 const Features = () => {
   return (
-    <section className="bg-slate-100 py-20 px-8">
+    <section id="features" className="bg-slate-100 py-20 px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-4">Institutional Grade Analysis</h2>
