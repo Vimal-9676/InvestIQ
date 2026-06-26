@@ -30,8 +30,10 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await axios.get('http://localhost:5000/api/auth/me');
-        setUser(res.data.user);
+        // MOCK: Simulate backend fetch User
+        // const res = await axios.get('http://localhost:5000/api/auth/me');
+        // setUser(res.data.user);
+        setUser({ id: '1', name: 'Test User', email: 'test@example.com' });
       } catch (error) {
         console.error('Error fetching user:', error);
         setToken(null);
@@ -45,22 +47,30 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = async (email, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/login', {
-      email,
-      password,
-    });
-    setToken(res.data.token);
-    setUser(res.data.user);
+    // MOCK: Simulate backend login
+    // const res = await axios.post('http://localhost:5000/api/auth/login', {
+    //   email,
+    //   password,
+    // });
+    // setToken(res.data.token);
+    // setUser(res.data.user);
+    
+    setToken('mock-jwt-token-12345');
+    setUser({ id: '1', name: 'Test User', email });
   };
 
-  const signup = async (full_name, email, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/signup', {
-      full_name,
-      email,
-      password,
-    });
-    setToken(res.data.token);
-    setUser(res.data.user);
+  const signup = async (name, email, password) => {
+    // MOCK: Simulate backend signup
+    // const res = await axios.post('http://localhost:5000/api/auth/signup', {
+    //   name,
+    //   email,
+    //   password,
+    // });
+    // setToken(res.data.token);
+    // setUser(res.data.user);
+    
+    setToken('mock-jwt-token-12345');
+    setUser({ id: '1', name, email });
   };
 
   const logout = () => {

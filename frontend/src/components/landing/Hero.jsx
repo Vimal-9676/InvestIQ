@@ -26,9 +26,6 @@ const Hero = ({ onGetStarted }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </button>
-        <button className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-medium px-8 py-3 rounded-lg transition-all duration-300">
-          View Demo
-        </button>
       </div>
 
       {/* Trusted By */}
