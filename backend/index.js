@@ -14,10 +14,12 @@ app.use(express.json());
 
 // Routes
 import authRoutes from './src/routes/auth.js';
-import aiRoutes from './src/routes/aiRoutes.js'
+import aiRoutes from './src/routes/aiRoutes.js';
+import portfolioRoutes from './src/routes/portfolioRoutes.js';
 
 app.use('/api/auth', authRoutes);
 app.use("/api/ai", aiRoutes);
+app.use('/api/portfolio', portfolioRoutes);
 
 // Connect to DB and start server
 const PORT = process.env.PORT || 5000;

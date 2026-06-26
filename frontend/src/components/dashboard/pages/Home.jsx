@@ -1,13 +1,47 @@
 import { TrendingUp, TrendingDown, Wallet, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TopBar from '../TopBar';
+import { useAuth } from '../../../context/AuthContext';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Home = () => {
-  const investedStocks = [
-    { ticker: 'RELIANCE', name: 'Reliance Ind.', shares: 10, avgPrice: 2800, currentPrice: 2945.80, change: 1.24 },
-    { ticker: 'TCS', name: 'Tata Consultancy', shares: 5, avgPrice: 3800, currentPrice: 3950.20, change: -0.45 },
-    { ticker: 'HDFCBANK', name: 'HDFC Bank', shares: 20, avgPrice: 1400, currentPrice: 1455.50, change: 0.89 },
-  ];
+  const { user } = useAuth();
+  
+  const [portfolio, setPortfolio] = useState({
+    invested_amount: 0,
+    available_balance: 0,
+    total_portfolio_value: 0,
+    companies_invested: []
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/portfolio');
+        setPortfolio(res.data);
+      } catch (error) {
+        console.warn('Portfolio data not found in DB or error fetching. Falling back to mock data.', error);
+        setPortfolio({
+          invested_amount: 76000.00,
+          available_balance: 12450.00,
+          total_portfolio_value: 78319.00,
+          companies_invested: [
+            { ticker: 'RELIANCE', company_name: 'Reliance Ind.', shares: 10, avgPrice: 2800, current_price: 2945.80, percentage_returns: 1.24 },
+            { ticker: 'TCS', company_name: 'Tata Consultancy', shares: 5, avgPrice: 3800, current_price: 3950.20, percentage_returns: -0.45 },
+            { ticker: 'HDFCBANK', company_name: 'HDFC Bank', shares: 20, avgPrice: 1400, current_price: 1455.50, percentage_returns: 0.89 },
+          ]
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    if (user) {
+      fetchPortfolio();
+    }
+  }, [user]);
 
   const topPerformers = [
     { ticker: 'ZOMATO', name: 'Zomato Ltd.', price: 165.40, change: 5.67 },
@@ -21,7 +55,7 @@ const Home = () => {
 
       {/* Header Section */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-2">Hello, User 👋</h1>
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">Hello, {user?.name || user?.full_name || 'User'} 👋</h1>
         <p className="text-slate-500">Here's your investment overview for today.</p>
       </div>
 
@@ -32,21 +66,21 @@ const Home = () => {
             <Wallet className="w-5 h-5" />
             <span className="font-medium">Total Portfolio Value</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight">₹78,319.00</h2>
+          <h2 className="text-4xl font-bold tracking-tight">₹{portfolio.total_portfolio_value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h2>
           <div className="mt-4 flex items-center text-sm font-medium bg-white/20 w-max px-3 py-1 rounded-full">
             <TrendingUp className="w-4 h-4 mr-1" />
-            +₹2,319.00 (3.05%)
+            +₹{(portfolio.total_portfolio_value - portfolio.invested_amount).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ({portfolio.invested_amount ? ((portfolio.total_portfolio_value - portfolio.invested_amount) / portfolio.invested_amount * 100).toFixed(2) : '0.00'}%)
           </div>
         </div>
         
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center">
           <span className="text-slate-500 font-medium mb-1">Invested Amount</span>
-          <h3 className="text-2xl font-bold text-slate-900">₹76,000.00</h3>
+          <h3 className="text-2xl font-bold text-slate-900">₹{portfolio.invested_amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h3>
         </div>
 
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center">
           <span className="text-slate-500 font-medium mb-1">Available to Invest</span>
-          <h3 className="text-2xl font-bold text-slate-900">₹12,450.00</h3>
+          <h3 className="text-2xl font-bold text-slate-900">₹{portfolio.available_balance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h3>
           <button className="mt-3 text-sm text-indigo-600 font-medium text-left hover:text-indigo-800 transition-colors">
             + Add Funds
           </button>
@@ -71,25 +105,25 @@ const Home = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {investedStocks.map((stock) => (
+                {portfolio.companies_invested.map((stock) => (
                   <tr key={stock.ticker} className="hover:bg-slate-50 transition-colors group">
                     <td className="px-6 py-4 text-left">
                       <Link to={`/dashboard/stock/${stock.ticker}`} className="block">
                         <div className="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">{stock.ticker}</div>
-                        <div className="text-sm text-slate-500">{stock.name}</div>
+                        <div className="text-sm text-slate-500">{stock.company_name}</div>
                       </Link>
                     </td>
                     <td className="px-6 py-4 text-left">
                       <div className="font-medium text-slate-900">{stock.shares} shares</div>
-                      <div className="text-sm text-slate-500">Avg: ₹{stock.avgPrice}</div>
+                      <div className="text-sm text-slate-500">Avg: ₹{stock.avgPrice || (stock.current_price / (1 + stock.percentage_returns / 100)).toFixed(2)}</div>
                     </td>
                     <td className="px-6 py-4 text-left font-medium text-slate-900">
-                      ₹{stock.currentPrice.toFixed(2)}
+                      ₹{stock.current_price?.toFixed(2)}
                     </td>
                     <td className="px-6 py-4 text-left">
-                      <div className={`inline-flex items-center px-2.5 py-1 rounded-md text-sm font-semibold ${stock.change >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                        {stock.change >= 0 ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
-                        {Math.abs(stock.change)}%
+                      <div className={`inline-flex items-center px-2.5 py-1 rounded-md text-sm font-semibold ${stock.percentage_returns >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                        {stock.percentage_returns >= 0 ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
+                        {Math.abs(stock.percentage_returns)}%
                       </div>
                     </td>
                   </tr>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Eye, EyeOff, Activity } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AuthModal = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,6 +16,7 @@ const AuthModal = ({ isOpen, onClose }) => {
 
   const { login, signup } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   if (!isOpen) return null;
 
@@ -31,7 +32,9 @@ const AuthModal = ({ isOpen, onClose }) => {
         await signup(full_name, email, password);
       }
       onClose();
-      navigate('/dashboard');
+      if (!location.pathname.startsWith('/dashboard')) {
+        navigate('/dashboard');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred. Please try again.');
     } finally {

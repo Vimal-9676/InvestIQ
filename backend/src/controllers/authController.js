@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Portfolio from '../models/Portfolio.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -24,6 +25,15 @@ export const signup = async (req, res) => {
       full_name,
       email,
       password_hash: hashedPassword,
+    });
+
+    // Initialize an empty portfolio with virtual cash
+    await Portfolio.create({
+      user: user._id,
+      invested_amount: 0,
+      available_balance: 100000,
+      total_portfolio_value: 0,
+      companies_invested: []
     });
 
     // Create token

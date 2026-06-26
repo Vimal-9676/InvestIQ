@@ -24,11 +24,11 @@ const Profile = () => {
           <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
             <div className="w-24 h-24 rounded-full bg-indigo-100 mx-auto mb-4 border-4 border-white shadow-sm overflow-hidden flex items-center justify-center">
               <span className="text-3xl font-bold text-indigo-600">
-                {user?.name?.charAt(0) || 'U'}
+                {(user?.name || user?.full_name)?.charAt(0)?.toUpperCase() || 'U'}
               </span>
             </div>
-            <h2 className="text-xl font-bold text-slate-900">{user?.name || 'User'}</h2>
-            <p className="text-sm text-slate-500 mb-4">{user?.email || 'user@example.com'}</p>
+            <h2 className="text-xl font-bold text-slate-900">{user?.name || user?.full_name || 'User'}</h2>
+            <p className="text-sm text-slate-500 mb-4">{user?.email || ''}</p>
             <span className="px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-full border border-green-100">
               Verified Account
             </span>
@@ -73,14 +73,14 @@ const Profile = () => {
                   <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input type="text" defaultValue={user?.name || "Vimal"} className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
+                    <input type="text" defaultValue={user?.name || user?.full_name || ""} className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input type="email" defaultValue={user?.email || "vimal@example.com"} className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
+                    <input type="email" defaultValue={user?.email || ""} className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
                   </div>
                 </div>
               </div>
@@ -90,14 +90,14 @@ const Profile = () => {
                   <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input type="tel" defaultValue="+91 98765 43210" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
+                    <input type="tel" defaultValue={user?.phone || ""} className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" placeholder="Add phone number" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Location</label>
                   <div className="relative">
                     <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input type="text" defaultValue="Mumbai, India" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
+                    <input type="text" defaultValue={user?.location || ""} className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" placeholder="Add location" />
                   </div>
                 </div>
               </div>
