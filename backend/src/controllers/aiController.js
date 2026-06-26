@@ -1,4 +1,4 @@
-import { askGemini } from "../ai/services/geminiService.js";
+import { askRAG } from "../ai/services/ragService.js";
 
 export const chatWithAI = async (req, res) => {
   try {
@@ -11,11 +11,12 @@ export const chatWithAI = async (req, res) => {
       });
     }
 
-    const answer = await askGemini(question);
+    const { answer, sources } = await askRAG(question);
 
     res.status(200).json({
       success: true,
       answer,
+      sources,
     });
   } catch (error) {
     console.error(error);
@@ -26,5 +27,3 @@ export const chatWithAI = async (req, res) => {
     });
   }
 };
-
-

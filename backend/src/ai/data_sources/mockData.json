@@ -1,0 +1,62 @@
+{
+  "TCS": {
+    "fundamentals": {
+      "revenue": "$27.9 Billion",
+      "net_income": "$5.3 Billion",
+      "operating_margin": "24.5%",
+      "pe_ratio": "29.4",
+      "market_cap": "$160 Billion",
+      "latest_results_summary": "TCS reported a strong quarter with double-digit growth in digital services. The operating margin remained resilient despite macroeconomic headwinds. Management expressed optimism about the AI and Cloud transformation pipeline."
+    },
+    "news": [
+      {
+        "title": "TCS Secures Mega Deal with European Bank",
+        "date": "2026-05-15",
+        "content": "Tata Consultancy Services announced a multi-year partnership to modernize the core banking systems of a leading European bank, leveraging its proprietary AI-driven platforms.",
+        "url": "https://mocknews.com/tcs-deal"
+      },
+      {
+        "title": "TCS Q4 Results Highlight Resilient Margins",
+        "date": "2026-04-12",
+        "content": "TCS's latest quarterly results showed an operating margin of 24.5%, beating analyst expectations despite global slowdown concerns.",
+        "url": "https://mocknews.com/tcs-q4-results"
+      }
+    ]
+  },
+  "HDFC": {
+    "fundamentals": {
+      "revenue": "$22.5 Billion",
+      "net_income": "$6.1 Billion",
+      "net_interest_margin": "3.8%",
+      "pe_ratio": "18.2",
+      "market_cap": "$140 Billion",
+      "latest_results_summary": "HDFC Bank showcased robust credit growth across retail and corporate segments. Asset quality improved slightly, and the net interest margin stabilized at 3.8%."
+    },
+    "news": [
+      {
+        "title": "HDFC Expands Branch Network in Semi-Urban Areas",
+        "date": "2026-06-01",
+        "content": "HDFC Bank plans to open 500 new branches in semi-urban and rural areas to drive financial inclusion and capture emerging market growth.",
+        "url": "https://mocknews.com/hdfc-expansion"
+      }
+    ]
+  },
+  "ICICI": {
+    "fundamentals": {
+      "revenue": "$19.8 Billion",
+      "net_income": "$5.4 Billion",
+      "net_interest_margin": "4.1%",
+      "pe_ratio": "16.5",
+      "market_cap": "$115 Billion",
+      "latest_results_summary": "ICICI Bank reported record profits driven by high net interest margins (4.1%) and strong fee income. Provisions for bad loans declined significantly."
+    },
+    "news": [
+      {
+        "title": "ICICI Bank Launches New Digital Lending Platform",
+        "date": "2026-05-20",
+        "content": "To compete with fintech startups, ICICI Bank unveiled a fully digital lending platform offering instant personal and business loans.",
+        "url": "https://mocknews.com/icici-digital"
+      }
+    ]
+  }
+}

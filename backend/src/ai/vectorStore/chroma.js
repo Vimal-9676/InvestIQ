@@ -1,18 +1,3 @@
-// import { Chroma } from "@langchain/community/vectorstores/chroma";
-
-// import { embeddings } from "../embeddings/embedding.js";
-
-// export const getVectorStore = async () => {
-//   const vectorStore = new Chroma(embeddings, {
-//   collectionName: "stock-research",
-//   host: "localhost",
-//   port: 8000,
-//   ssl: false,
-// });
-
-//   return vectorStore;
-// };
-
 
 import { ChromaClient } from "chromadb";
 
