@@ -8,7 +8,7 @@ const AuthModal = ({ isOpen, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   
   // Form states
-  const [name, setName] = useState('');
+  const [full_name, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +28,7 @@ const AuthModal = ({ isOpen, onClose }) => {
       if (isLogin) {
         await login(email, password);
       } else {
-        await signup(name, email, password);
+        await signup(full_name, email, password);
       }
       onClose();
       navigate('/dashboard');
@@ -77,8 +77,8 @@ const AuthModal = ({ isOpen, onClose }) => {
                 placeholder="John Doe"
                 className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300"
                 required={!isLogin}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={full_name}
+                onChange={(e) => setFullName(e.target.value)}
               />
             </div>
           )}
