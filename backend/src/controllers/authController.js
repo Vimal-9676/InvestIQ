@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 // @access  Public
 export const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { full_name, email, password } = req.body;
 
     // Check if user exists
     const existingUser = await User.findOne({ email });
@@ -21,9 +21,9 @@ export const signup = async (req, res) => {
 
     // Create user
     const user = await User.create({
-      name,
+      full_name,
       email,
-      password: hashedPassword,
+      password_hash: hashedPassword,
     });
 
     // Create token
@@ -35,8 +35,8 @@ export const signup = async (req, res) => {
       success: true,
       token,
       user: {
-        id: user._id,
-        name: user.name,
+        id: user.id || user._id,
+        full_name: user.full_name,
         email: user.email,
       },
     });
@@ -53,13 +53,18 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if user exists
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select('+password_hash');
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    // Check if password_hash exists (legacy accounts might not have it)
+    if (!user.password_hash) {
+      return res.status(400).json({ message: 'Invalid credentials (please recreate account due to update)' });
+    }
+
     // Check if password matches
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
@@ -73,8 +78,8 @@ export const login = async (req, res) => {
       success: true,
       token,
       user: {
-        id: user._id,
-        name: user.name,
+        id: user.id || user._id,
+        full_name: user.full_name,
         email: user.email,
       },
     });
@@ -88,12 +93,12 @@ export const login = async (req, res) => {
 // @access  Private
 export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user._id);
     res.status(200).json({
       success: true,
       user: {
-        id: user._id,
-        name: user.name,
+        id: user.id || user._id,
+        full_name: user.full_name,
         email: user.email,
       },
     });

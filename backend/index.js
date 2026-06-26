@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-import authRoutes from './routes/auth.js';
+import authRoutes from './src/routes/auth.js';
 import aiRoutes from './src/routes/aiRoutes.js'
 
 app.use('/api/auth', authRoutes);
