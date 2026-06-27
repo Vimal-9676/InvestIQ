@@ -32,12 +32,12 @@ export async function retrieveContext(question, k = 5) {
   return documents;
 }
 
-// Simple ticker extraction (looks for 2-5 uppercase letters)
+// Simple ticker extraction (looks for 2-10 uppercase letters)
 function extractTickers(question) {
-  const regex = /\b[A-Z]{2,5}\b/g;
+  const regex = /\b[A-Z]{2,10}\b/g;
   const matches = question.match(regex);
   // Filter out common non-ticker uppercase words if needed
-  const exclusions = ['WHAT', 'HOW', 'WHY', 'WHEN', 'WHO', 'THE', 'AND'];
+  const exclusions = ['WHAT', 'HOW', 'WHY', 'WHEN', 'WHO', 'THE', 'AND', 'COMPARE', 'BETWEEN', 'FOR'];
   if (!matches) return [];
   return [...new Set(matches.filter(m => !exclusions.includes(m)))];
 }
@@ -45,29 +45,39 @@ function extractTickers(question) {
 export async function askRAG(question) {
   try {
     // 1. Get historical context from Chroma
-    const contextDocs = await retrieveContext(question);
+    // We fetch a larger k to ensure we get enough relevant docs before filtering
+    let contextDocs = await retrieveContext(question, 10);
 
-    // 2. Fetch Live API Data based on detected tickers
+    // 2. Extract tickers
     const tickers = extractTickers(question);
+
+    // Filter Chroma docs to ONLY include relevant tickers (or docs with no ticker)
+    if (tickers.length > 0) {
+      contextDocs = contextDocs.filter(doc => 
+        !doc.metadata.ticker || tickers.includes(doc.metadata.ticker)
+      );
+    }
+
+    // 3. Fetch Live Mock Data based on detected tickers
     for (const ticker of tickers) {
       const fundamentals = await getFundamentals(ticker);
       if (fundamentals) {
         contextDocs.push({
-          pageContent: `LIVE FUNDAMENTALS FOR ${ticker}:\nRevenue: ${fundamentals.revenue}\nNet Income: ${fundamentals.net_income}\nOperating Margin: ${fundamentals.operating_margin}\nPE Ratio: ${fundamentals.pe_ratio}\nMarket Cap: ${fundamentals.market_cap}\nSummary: ${fundamentals.latest_results_summary}`,
-          metadata: { source: 'Alpha Vantage (Live)', ticker }
+          pageContent: `COMPANY FUNDAMENTALS FOR ${ticker}:\nRevenue: ${fundamentals.revenue}\nNet Income: ${fundamentals.net_income}\nOperating Margin: ${fundamentals.operating_margin}\nPE Ratio: ${fundamentals.pe_ratio}\nMarket Cap: ${fundamentals.market_cap}\nSummary: ${fundamentals.latest_results_summary}`,
+          metadata: { source: 'Company Fundamentals', ticker }
         });
       }
 
       const newsList = await getNews(ticker);
       for (const news of newsList) {
         contextDocs.push({
-          pageContent: `LIVE MARKET DATA FOR ${ticker} on ${news.date}:\nTitle: ${news.title}\nContent: ${news.content}`,
-          metadata: { source: 'Marketstack (Live)', ticker, date: news.date, url: news.url }
+          pageContent: `HISTORICAL NEWS FOR ${ticker} on ${news.date}:\nTitle: ${news.title}\nContent: ${news.content}`,
+          metadata: { source: 'Historical News', ticker, date: news.date, url: news.url }
         });
       }
     }
 
-    // 3. Generate Answer
+    // 4. Generate Answer
     const prompt = getSystemPrompt(contextDocs, question);
 
     const response = await ai.models.generateContent({
@@ -105,5 +115,6 @@ export async function askRAG(question) {
     throw new Error("Failed to generate RAG response");
   }
 }
+
 
 

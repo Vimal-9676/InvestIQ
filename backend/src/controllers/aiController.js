@@ -15,6 +15,8 @@ export const chatWithAI = async (req, res) => {
 
     res.status(200).json({
       success: true,
+      query: question,
+      generatedAt: new Date().toISOString(),
       answer,
       sources,
     });

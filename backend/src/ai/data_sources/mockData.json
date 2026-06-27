@@ -6,20 +6,14 @@
       "operating_margin": "24.5%",
       "pe_ratio": "29.4",
       "market_cap": "$160 Billion",
-      "latest_results_summary": "TCS reported a strong quarter with double-digit growth in digital services. The operating margin remained resilient despite macroeconomic headwinds. Management expressed optimism about the AI and Cloud transformation pipeline."
+      "latest_results_summary": "TCS reported strong double-digit growth in digital services. The operating margin remained resilient at 24.5% despite macroeconomic headwinds."
     },
     "news": [
       {
         "title": "TCS Secures Mega Deal with European Bank",
         "date": "2026-05-15",
-        "content": "Tata Consultancy Services announced a multi-year partnership to modernize the core banking systems of a leading European bank, leveraging its proprietary AI-driven platforms.",
+        "content": "Tata Consultancy Services announced a multi-year partnership to modernize the core banking systems of a leading European bank.",
         "url": "https://mocknews.com/tcs-deal"
-      },
-      {
-        "title": "TCS Q4 Results Highlight Resilient Margins",
-        "date": "2026-04-12",
-        "content": "TCS's latest quarterly results showed an operating margin of 24.5%, beating analyst expectations despite global slowdown concerns.",
-        "url": "https://mocknews.com/tcs-q4-results"
       }
     ]
   },
@@ -27,16 +21,16 @@
     "fundamentals": {
       "revenue": "$22.5 Billion",
       "net_income": "$6.1 Billion",
-      "net_interest_margin": "3.8%",
+      "operating_margin": "3.8%",
       "pe_ratio": "18.2",
       "market_cap": "$140 Billion",
-      "latest_results_summary": "HDFC Bank showcased robust credit growth across retail and corporate segments. Asset quality improved slightly, and the net interest margin stabilized at 3.8%."
+      "latest_results_summary": "HDFC Bank showcased robust credit growth across retail and corporate segments. Net interest margins stabilized."
     },
     "news": [
       {
-        "title": "HDFC Expands Branch Network in Semi-Urban Areas",
+        "title": "HDFC Expands Branch Network",
         "date": "2026-06-01",
-        "content": "HDFC Bank plans to open 500 new branches in semi-urban and rural areas to drive financial inclusion and capture emerging market growth.",
+        "content": "HDFC Bank plans to open 500 new branches in semi-urban and rural areas to drive financial inclusion.",
         "url": "https://mocknews.com/hdfc-expansion"
       }
     ]
@@ -45,17 +39,143 @@
     "fundamentals": {
       "revenue": "$19.8 Billion",
       "net_income": "$5.4 Billion",
-      "net_interest_margin": "4.1%",
+      "operating_margin": "4.1%",
       "pe_ratio": "16.5",
       "market_cap": "$115 Billion",
-      "latest_results_summary": "ICICI Bank reported record profits driven by high net interest margins (4.1%) and strong fee income. Provisions for bad loans declined significantly."
+      "latest_results_summary": "ICICI Bank reported record profits driven by high net interest margins (4.1%) and strong fee income."
     },
     "news": [
       {
         "title": "ICICI Bank Launches New Digital Lending Platform",
         "date": "2026-05-20",
-        "content": "To compete with fintech startups, ICICI Bank unveiled a fully digital lending platform offering instant personal and business loans.",
+        "content": "ICICI unveiled a fully digital lending platform offering instant personal and business loans.",
         "url": "https://mocknews.com/icici-digital"
+      }
+    ]
+  },
+  "RELIANCE": {
+    "fundamentals": {
+      "revenue": "$108.2 Billion",
+      "net_income": "$9.4 Billion",
+      "operating_margin": "10.2%",
+      "pe_ratio": "26.8",
+      "market_cap": "$210 Billion",
+      "latest_results_summary": "Reliance Industries reported record earnings, driven by strong performance in its Jio telecom and retail divisions."
+    },
+    "news": [
+      {
+        "title": "Reliance Jio Announces 6G Roadmap",
+        "date": "2026-06-10",
+        "content": "Reliance Jio unveiled its 6G strategy, committing $2B towards next-generation network infrastructure.",
+        "url": "https://mocknews.com/reliance-jio-6g"
+      }
+    ]
+  },
+  "INFY": {
+    "fundamentals": {
+      "revenue": "$18.5 Billion",
+      "net_income": "$3.1 Billion",
+      "operating_margin": "21.1%",
+      "pe_ratio": "24.5",
+      "market_cap": "$75 Billion",
+      "latest_results_summary": "Infosys guided for steady revenue growth of 4-6% in constant currency, with margin expansion expected in the second half."
+    },
+    "news": [
+      {
+        "title": "Infosys Wins Cloud Migration Contract",
+        "date": "2026-06-05",
+        "content": "Infosys signed a definitive agreement with a US healthcare giant for a massive cloud migration project.",
+        "url": "https://mocknews.com/infy-cloud"
+      }
+    ]
+  },
+  "WIPRO": {
+    "fundamentals": {
+      "revenue": "$11.2 Billion",
+      "net_income": "$1.4 Billion",
+      "operating_margin": "16.2%",
+      "pe_ratio": "20.1",
+      "market_cap": "$35 Billion",
+      "latest_results_summary": "Wipro reported a slight revenue decline in Q1 but management remains confident on the turnaround strategy."
+    },
+    "news": [
+      {
+        "title": "Wipro Appoints New Head of AI Operations",
+        "date": "2026-05-28",
+        "content": "Wipro continues its internal restructuring by appointing a new global head to drive enterprise AI adoption.",
+        "url": "https://mocknews.com/wipro-ai"
+      }
+    ]
+  },
+  "SBI": {
+    "fundamentals": {
+      "revenue": "$45.2 Billion",
+      "net_income": "$7.8 Billion",
+      "operating_margin": "3.5%",
+      "pe_ratio": "9.2",
+      "market_cap": "$80 Billion",
+      "latest_results_summary": "State Bank of India posted its highest ever quarterly profit, boosted by a sharp drop in non-performing assets."
+    },
+    "news": [
+      {
+        "title": "SBI Reduces Home Loan Rates",
+        "date": "2026-06-12",
+        "content": "SBI announced a festive season discount on home loans, reducing rates by 15 basis points.",
+        "url": "https://mocknews.com/sbi-rates"
+      }
+    ]
+  },
+  "BHARTIARTL": {
+    "fundamentals": {
+      "revenue": "$17.9 Billion",
+      "net_income": "$1.2 Billion",
+      "operating_margin": "18.4%",
+      "pe_ratio": "45.1",
+      "market_cap": "$70 Billion",
+      "latest_results_summary": "Bharti Airtel saw robust average revenue per user (ARPU) growth, fueled by premium subscriber additions."
+    },
+    "news": [
+      {
+        "title": "Airtel Expands 5G Coverage to 500 New Towns",
+        "date": "2026-05-30",
+        "content": "Bharti Airtel successfully rolled out its 5G plus network to an additional 500 tier-2 and tier-3 towns.",
+        "url": "https://mocknews.com/airtel-5g"
+      }
+    ]
+  },
+  "ITC": {
+    "fundamentals": {
+      "revenue": "$9.4 Billion",
+      "net_income": "$2.5 Billion",
+      "operating_margin": "34.2%",
+      "pe_ratio": "25.6",
+      "market_cap": "$65 Billion",
+      "latest_results_summary": "ITC reported steady FMCG volume growth and a strong recovery in its hospitality business segment."
+    },
+    "news": [
+      {
+        "title": "ITC Hotel Demerger Completed",
+        "date": "2026-06-15",
+        "content": "ITC officially completed the demerger of its hotel business, unlocking significant shareholder value.",
+        "url": "https://mocknews.com/itc-demerger"
+      }
+    ]
+  },
+  "HUL": {
+    "fundamentals": {
+      "revenue": "$7.2 Billion",
+      "net_income": "$1.3 Billion",
+      "operating_margin": "23.8%",
+      "pe_ratio": "52.4",
+      "market_cap": "$62 Billion",
+      "latest_results_summary": "Hindustan Unilever observed a resurgence in rural demand, leading to a 5% underlying volume growth."
+    },
+    "news": [
+      {
+        "title": "HUL Invests in D2C Brands",
+        "date": "2026-06-08",
+        "content": "HUL announced strategic investments in two rising Direct-to-Consumer (D2C) wellness and personal care brands.",
+        "url": "https://mocknews.com/hul-d2c"
       }
     ]
   }
