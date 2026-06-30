@@ -13,7 +13,7 @@ export const WatchlistView = ({ onSearch }) => {
     const fetchWatchlist = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5001/api/watchlist', {
+        const res = await axios.get('http://localhost:5000/api/watchlist', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setWatchlist(res.data);

@@ -12,7 +12,7 @@ let _fetched = false;
 export const fetchExchangeRate = async () => {
   if (_fetched) return _rate;
   try {
-    const res = await fetch('http://localhost:5001/api/stocks/exchange-rate');
+    const res = await fetch('http://localhost:5000/api/stocks/exchange-rate');
     const data = await res.json();
     if (data?.rate) {
       _rate = data.rate;

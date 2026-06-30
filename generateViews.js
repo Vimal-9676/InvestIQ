@@ -88,7 +88,7 @@ export const WatchlistView = ({ onSearch }) => {
     const fetchWatchlist = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5001/api/watchlist', {
+        const res = await axios.get('http://localhost:5000/api/watchlist', {
           headers: { Authorization: \`Bearer \${token}\` }
         });
         setWatchlist(res.data);
@@ -178,7 +178,7 @@ export const EarningsAnalyzerView = () => {
     setIsUploading(true);
     setAnalysis(null);
     try {
-      const res = await axios.post('http://localhost:5001/api/ai/analyze-earnings', formData, {
+      const res = await axios.post('http://localhost:5000/api/ai/analyze-earnings', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setAnalysis(res.data.analysis);
@@ -272,7 +272,7 @@ export const BullBearView = () => {
     setIsAnalyzing(true);
     setAnalysis(null);
     try {
-      const res = await axios.post('http://localhost:5001/api/ai/bull-bear', { ticker: ticker.trim().toUpperCase() });
+      const res = await axios.post('http://localhost:5000/api/ai/bull-bear', { ticker: ticker.trim().toUpperCase() });
       setAnalysis(res.data.analysis);
     } catch (error) {
       console.error(error);
@@ -343,7 +343,7 @@ export const NewsView = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/stocks/search?query=market');
+        const res = await axios.get('http://localhost:5000/api/stocks/search?query=market');
         if (res.data && res.data.news) {
           setNews(res.data.news);
         }

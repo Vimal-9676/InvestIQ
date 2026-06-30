@@ -90,7 +90,7 @@ export const NewsView = () => {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5001/api/stocks/market-news');
+      const res = await axios.get('http://localhost:5000/api/stocks/market-news');
       if (res.data) {
         setNews(res.data);
         setLastUpdated(new Date());
