@@ -14,7 +14,7 @@ export const BullBearView = () => {
     setIsAnalyzing(true);
     setAnalysis(null);
     try {
-      const res = await axios.post('http://localhost:5000/api/ai/bull-bear', { ticker: ticker.trim().toUpperCase() });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/ai/bull-bear`, { ticker: ticker.trim().toUpperCase() });
       setAnalysis(res.data.analysis);
     } catch (error) {
       console.error(error);

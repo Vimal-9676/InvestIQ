@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await axios.get('http://localhost:5000/api/auth/me');
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/me`);
         setUser(res.data.user);
       } catch (error) {
         console.error('Error fetching user:', error);
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = async (email, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/login', {
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
       email,
       password,
     });
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signup = async (name, email, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/signup', {
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, {
       name,
       email,
       password,

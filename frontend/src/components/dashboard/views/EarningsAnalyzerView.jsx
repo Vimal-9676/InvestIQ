@@ -2,7 +2,7 @@ import { FileText, Upload as UploadIcon, Loader2, Lightbulb, AlertTriangle, Tren
 import { useRef, useState } from 'react';
 import axios from 'axios';
 
-const API = 'http://localhost:5000';
+const API = import.meta.env.VITE_BACKEND_URL;
 
 const Section = ({ icon: Icon, title, items, color, bgColor }) => (
   <div className={`rounded-2xl border p-5 ${bgColor}`}>

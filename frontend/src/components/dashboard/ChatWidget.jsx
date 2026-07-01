@@ -28,7 +28,7 @@ const ChatWidget = ({ currentSymbol, isOpen, setIsOpen }) => {
   const fetchSessions = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/ai/history', {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/ai/history`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSavedSessions(res.data.sessions || []);
@@ -40,7 +40,7 @@ const ChatWidget = ({ currentSymbol, isOpen, setIsOpen }) => {
   const loadSession = async (sessionId) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/ai/history/${sessionId}`, {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/ai/history/${sessionId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setChatHistory(res.data.session.messages);
@@ -89,7 +89,7 @@ const ChatWidget = ({ currentSymbol, isOpen, setIsOpen }) => {
     setIsTyping(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/ai/chat', {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/ai/chat`, {
         question: userMessage.content,
         symbol: currentSymbol,
         sessionId: currentSessionId

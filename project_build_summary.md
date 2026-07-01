@@ -6,6 +6,14 @@
 
 ## History
 
+### July 1, 2026
+- **Accomplished**: Replaced hardcoded backend API URLs in the frontend with environment variables.
+- **New Files & Components**:
+  - Frontend: Created `.env` file to store `VITE_BACKEND_URL`.
+- **Design Decisions**:
+  - Centralized API URL configuration using Vite environment variables (`import.meta.env.VITE_BACKEND_URL`) to easily switch between local development and production environments.
+- **Current Overall State**: The application now dynamically references the backend API URL, improving deployability and environment management.
+
 ### June 25, 2026
 - **Accomplished**: Implemented a complete end-to-end authentication system.
 - **New Files & Components**:

@@ -18,10 +18,10 @@ const MainPanel = ({ currentSymbol, setCurrentSymbol, toggleSidebar, toggleChat 
     const fetchData = async () => {
       try {
         const [quoteRes, histRes, newsRes, watchlistRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/stocks/quote?symbol=${currentSymbol}`),
-          axios.get(`http://localhost:5000/api/stocks/history?symbol=${currentSymbol}&range=${timeframe}`),
-          axios.get(`http://localhost:5000/api/stocks/news?symbol=${currentSymbol}`),
-          axios.get(`http://localhost:5000/api/watchlist`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }})
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/stocks/quote?symbol=${currentSymbol}`),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/stocks/history?symbol=${currentSymbol}&range=${timeframe}`),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/stocks/news?symbol=${currentSymbol}`),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/watchlist`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }})
         ]);
         setQuote(quoteRes.data);
         setHistory(histRes.data);
@@ -39,10 +39,10 @@ const MainPanel = ({ currentSymbol, setCurrentSymbol, toggleSidebar, toggleChat 
     try {
       const token = localStorage.getItem('token');
       if (isInWatchlist) {
-        await axios.delete(`http://localhost:5000/api/watchlist/${currentSymbol}`, { headers: { Authorization: `Bearer ${token}` }});
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/watchlist/${currentSymbol}`, { headers: { Authorization: `Bearer ${token}` }});
         setIsInWatchlist(false);
       } else {
-        await axios.post(`http://localhost:5000/api/watchlist`, { symbol: currentSymbol }, { headers: { Authorization: `Bearer ${token}` }});
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/watchlist`, { symbol: currentSymbol }, { headers: { Authorization: `Bearer ${token}` }});
         setIsInWatchlist(true);
       }
     } catch (err) {
@@ -57,7 +57,7 @@ const MainPanel = ({ currentSymbol, setCurrentSymbol, toggleSidebar, toggleChat 
     }
     const search = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/stocks/search?q=${searchQuery}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/stocks/search?q=${searchQuery}`);
         setSearchResults(res.data);
       } catch (err) {
         console.error(err);

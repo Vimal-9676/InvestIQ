@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { formatINR } from '../../../utils/currency';
 
-const API = 'http://localhost:5000';
+const API = import.meta.env.VITE_BACKEND_URL;
 
 const INDEX_META = {
   '^NSEI':  { label: 'NIFTY 50',    flag: '🇮🇳', gradient: 'from-indigo-600 to-blue-500' },
